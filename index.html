@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VINS AI Video Studio</title>
+<style>
+:root{--bg:#0b1020;--panel:#141c31;--line:#273552;--muted:#9aabc8;--white:#f4f7ff;--accent:#8b5cf6;--cyan:#22d3ee}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#24204a 0,#0b1020 48%);color:var(--white);font:15px system-ui,Segoe UI,sans-serif}
+header{padding:25px max(20px,calc((100% - 1120px)/2));border-bottom:1px solid var(--line);background:#0b1020cc}
+.brand{font-weight:900;letter-spacing:1.5px;font-size:22px}.brand span{color:#a78bfa}header p{color:var(--muted);margin:5px 0}
+main{max-width:1120px;margin:25px auto;padding:0 18px;display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.card{background:#141c31ed;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 15px 40px #0003}
+h2{font-size:17px;margin:0 0 15px}label{display:block;color:#cbd5e1;font-size:13px;margin:13px 0 6px}
+input,textarea,select{width:100%;background:#0c1428;border:1px solid #344361;border-radius:10px;padding:11px;color:white;font:inherit}
+textarea{min-height:100px;resize:vertical}button{border:0;border-radius:10px;padding:11px 15px;background:linear-gradient(100deg,#7c3aed,#2563eb);color:white;font-weight:700;cursor:pointer;margin:8px 5px 0 0}
+button.secondary{background:#263653;border:1px solid #405274}button:disabled{opacity:.5;cursor:not-allowed}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hint{font-size:12px;color:var(--muted);line-height:1.5}.scene{border:1px solid #344361;border-radius:12px;padding:12px;margin:10px 0;background:#0d162b}.scene strong{color:#c4b5fd}.status{padding:12px;border-radius:10px;background:#0c1428;color:#a5f3fc;margin-top:12px;white-space:pre-wrap}
+.pill{display:inline-block;border:1px solid #3b4c6b;border-radius:99px;padding:4px 9px;font-size:11px;color:#c4b5fd;margin:3px}
+footer{max-width:1120px;margin:0 auto 30px;padding:0 18px;color:var(--muted);font-size:12px}
+@media(max-width:800px){main{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header><div class="brand">VINS <span>AI VIDEO STUDIO</span></div><p>Script • Storyboard • Kannada voice • Subtitles • MP4</p></header>
+<main>
+<section class="card">
+<h2>1. Create your advertisement</h2>
+<label>Business / brand name</label><input id="brand" value="VINS ENTERPRISES">
+<label>What is the advertisement about?</label><textarea id="idea">Create an advertisement for computer sales and service, CCTV installation, high-speed internet and hardware & networking solutions in Lingasugur.</textarea>
+<div class="row"><div><label>Language</label><select id="lang"><option value="kn">Kannada</option><option value="en">English</option><option value="hi">Hindi</option><option value="te">Telugu</option><option value="ta">Tamil</option></select></div>
+<div><label>Voice</label><select id="voice"><option value="kn-IN-GaganNeural">Kannada male – Gagan</option><option value="kn-IN-SapnaNeural">Kannada female – Sapna</option><option value="en-US-GuyNeural">English male</option><option value="en-US-JennyNeural">English female</option><option value="hi-IN-MadhurNeural">Hindi male</option><option value="hi-IN-SwaraNeural">Hindi female</option></select></div></div>
+<div class="row"><div><label>Video format</label><select id="format"><option value="1080x1920">Vertical 9:16 – Reels</option><option value="1920x1080">Landscape 16:9 – YouTube</option><option value="1080x1080">Square 1:1</option></select></div>
+<div><label>Duration target</label><select id="duration"><option>30 seconds</option><option>15 seconds</option><option>45 seconds</option><option>60 seconds</option></select></div></div>
+<label>Full voice-over script (Kannada script recommended for Kannada voice)</label>
+<textarea id="script">ನಮಸ್ಕಾರ ಲಿಂಗಸುಗೂರು! ನಿಮ್ಮ ಎಲ್ಲಾ ಕಂಪ್ಯೂಟರ್ ಮತ್ತು ನೆಟ್ವರ್ಕಿಂಗ್ ಸಮಸ್ಯೆಗಳಿಗೆ ಒಂದೇ ಪರಿಹಾರ — VINS ENTERPRISES! ಕಂಪ್ಯೂಟರ್ ಸೇಲ್ಸ್ ಮತ್ತು ಸರ್ವಿಸ್, CCTV ಕ್ಯಾಮೆರಾ ಇನ್‌ಸ್ಟಾಲೇಶನ್, ಹೈ-ಸ್ಪೀಡ್ ಇಂಟರ್ನೆಟ್ ಸೇವೆ ಹಾಗೂ ಹಾರ್ಡ್‌ವೇರ್ ಮತ್ತು ನೆಟ್ವರ್ಕಿಂಗ್ ಸೊಲ್ಯೂಷನ್ಸ್. ಇಂದೇ ಭೇಟಿ ನೀಡಿ. ಸಂಗೀತಾ ಮೊಬೈಲ್ಸ್ ಎದುರು, ಬೆಂಗಳೂರು ಬೈಪಾಸ್ ರಸ್ತೆ, ಲಿಂಗಸುಗೂರು. ಕರೆ ಮಾಡಿ 8147422496 ಅಥವಾ 9731443007. VINS ENTERPRISES — ನಿಮ್ಮ ತಂತ್ರಜ್ಞಾನಕ್ಕೆ ವಿಶ್ವಾಸದ ವಿಳಾಸ!</textarea>
+<label>Contact / footer text</label><input id="contact" value="Opp. Sangeetha Mobiles, Bangalore Bypass Road, Lingasugur | 8147422496 • 9731443007">
+<label>Upload shop / product photos (optional, up to 12)</label><input id="images" type="file" accept="image/*" multiple>
+<label>Background music (optional MP3/WAV)</label><input id="music" type="file" accept="audio/*">
+<label>Logo (optional image)</label><input id="logo" type="file" accept="image/*">
+<button id="make">Build storyboard</button><button class="secondary" id="sample">Load VINS sample</button>
+<div id="status" class="status">Ready. Build a storyboard, then export your project package for cloud rendering.</div>
+</section>
+<section class="card">
+<h2>2. Storyboard preview</h2>
+<div class="hint">The app splits your narration into scenes. Review the scene cards, then export the project ZIP and upload it to the included Google Colab renderer.</div>
+<div id="scenes"><p class="hint">Your scenes will appear here.</p></div>
+<h2 style="margin-top:22px">3. Export and render</h2>
+<p class="hint">The browser prepares a ZIP containing your script, scene plan, photos, logo and music. Google Colab renders the MP4 in the cloud. No GPU is needed on your PC.</p>
+<button id="export" disabled>Download cloud-render project ZIP</button>
+<a href="cloud/VINS_Cloud_Renderer.ipynb" download><button class="secondary">Download Colab renderer</button></a>
+<p class="hint">After downloading both files, open the Colab notebook link in README, upload the notebook to Colab, run its cells and upload your project ZIP when prompted.</p>
+<div class="pill">Kannada voice</div><div class="pill">SRT subtitles</div><div class="pill">MP4 export</div><div class="pill">No PC GPU</div>
+</section>
+</main>
+<footer>VINS AI VIDEO STUDIO • Independent project. Third-party free services have limits and can change. Do not upload confidential customer data.</footer>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script><script src="app.js"></script>
+</body></html>
