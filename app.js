@@ -1,0 +1,15 @@
+const $=id=>document.getElementById(id);let scenes=[];
+function splitSentences(t){return (t.match(/[^.!?।]+[.!?।]?/gu)||[t]).map(x=>x.trim()).filter(Boolean)}
+function build(){const script=$('script').value.trim();if(!script){alert('Enter a voice-over script first.');return}
+let chunks=splitSentences(script);if(chunks.length<3){let words=script.split(/\s+/),n=Math.ceil(words.length/3);chunks=[];for(let i=0;i<words.length;i+=n)chunks.push(words.slice(i,i+n).join(' '))}
+scenes=chunks.map((s,i)=>({id:i+1,title:['INTRODUCTION','OUR SERVICES','WHY CHOOSE US','CONTACT US'][Math.min(i,3)],narration:s,visual_hint:['Shop exterior / brand introduction','Show products and service work','Show happy customers and quality service','Logo, phone numbers and shop address'][Math.min(i,3)]}));
+$('scenes').innerHTML=scenes.map(s=>`<div class="scene"><strong>SCENE ${s.id}: ${s.title}</strong><p>${escapeHtml(s.narration)}</p><div class="hint">Visual: ${s.visual_hint}</div></div>`).join('');
+$('status').textContent=`Storyboard created: ${scenes.length} scenes. Next download the project ZIP and render it in Google Colab.`;$('export').disabled=false}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function readFile(f){return {name:f.name,type:f.type,data:await f.arrayBuffer()}}
+async function exportZip(){if(!scenes.length)build();const z=new JSZip();const files=z.folder('assets');const imgs=[...$('images').files];for(let i=0;i<imgs.length;i++)files.file(`image_${i+1}_${imgs[i].name}`,await imgs[i].arrayBuffer());
+if($('logo').files[0])files.file('logo_'+$('logo').files[0].name,await $('logo').files[0].arrayBuffer());
+if($('music').files[0])files.file('music_'+$('music').files[0].name,await $('music').files[0].arrayBuffer());
+const manifest={brand:$('brand').value,idea:$('idea').value,language:$('lang').value,voice:$('voice').value,format:$('format').value,duration:$('duration').value,script:$('script').value,contact:$('contact').value,scenes,assets:{images:imgs.map((f,i)=>`assets/image_${i+1}_${f.name}`),logo:$('logo').files[0]?`assets/logo_${$('logo').files[0].name}`:null,music:$('music').files[0]?`assets/music_${$('music').files[0].name}`:null}};
+z.file('project.json',JSON.stringify(manifest,null,2));const blob=await z.generateAsync({type:'blob'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='VINS_AI_Video_Project.zip';a.click();URL.revokeObjectURL(a.href);$('status').textContent='Project ZIP downloaded. Now open the Colab renderer and upload this ZIP.'}
+$('make').onclick=build;$('export').onclick=exportZip;$('sample').onclick=()=>{$('brand').value='VINS ENTERPRISES';$('script').value='ನಮಸ್ಕಾರ ಲಿಂಗಸುಗೂರು! ನಿಮ್ಮ ಎಲ್ಲಾ ಕಂಪ್ಯೂಟರ್ ಮತ್ತು ನೆಟ್ವರ್ಕಿಂಗ್ ಸಮಸ್ಯೆಗಳಿಗೆ ಒಂದೇ ಪರಿಹಾರ — VINS ENTERPRISES! ಕಂಪ್ಯೂಟರ್ ಸೇಲ್ಸ್ ಮತ್ತು ಸರ್ವಿಸ್, CCTV ಕ್ಯಾಮೆರಾ ಇನ್‌ಸ್ಟಾಲೇಶನ್, ಹೈ-ಸ್ಪೀಡ್ ಇಂಟರ್ನೆಟ್ ಸೇವೆ ಹಾಗೂ ಹಾರ್ಡ್‌ವೇರ್ ಮತ್ತು ನೆಟ್ವರ್ಕಿಂಗ್ ಸೊಲ್ಯೂಷನ್ಸ್. ಇಂದೇ ಭೇಟಿ ನೀಡಿ. ಸಂಗೀತಾ ಮೊಬೈಲ್ಸ್ ಎದುರು, ಬೆಂಗಳೂರು ಬೈಪಾಸ್ ರಸ್ತೆ, ಲಿಂಗಸುಗೂರು. ಕರೆ ಮಾಡಿ 8147422496 ಅಥವಾ 9731443007.';build()};
